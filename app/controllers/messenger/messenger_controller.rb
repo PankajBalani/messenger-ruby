@@ -2,6 +2,9 @@ require 'rest-client'
 
 module Messenger
   class MessengerController < ActionController::Base
+
+    before_action :set_page_access_token
+
     def validate
       if verify_token_valid? && access_token_valid?
         render json: params["hub.challenge"]
@@ -40,6 +43,15 @@ module Messenger
 
     def fb_params
       Params.new(params)
+    end
+
+    def set_page_access_token
+      slug = params[:slug]
+      @facebook_token = FacebookToken.where(page_slug: slug).first
+      Messenger.configure do |config|
+        config.verify_token      = @facebook_token.verify_token
+        config.page_access_token = @facebook_token.page_access_token
+      end
     end
   end
 end
