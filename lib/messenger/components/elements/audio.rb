@@ -11,7 +11,7 @@ module Messenger
 
       def initialize(url:)
         @url  = url
-        @type = 'image'
+        @type = 'audio'
       end
     end
   end
