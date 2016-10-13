@@ -46,11 +46,11 @@ module Messenger
     end
 
     def set_page_access_token
-      slug = params[:slug]
-      @facebook_token = BotConfig.where(page_slug: slug).first
+      recipient_id = params[:entry][0][:id] 
+      @facebook_token = BotConfig.where(recipient_id: recipient_id).first
       Messenger.configure do |config|
-        config.verify_token      = @facebook_token.try(:verify_token)
-        config.page_access_token = @facebook_token.try(:page_access_token)
+        config.verify_token      = @facebook_token.verify_token
+        config.page_access_token = @facebook_token.page_access_token
       end
     end
   end
