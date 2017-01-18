@@ -11,11 +11,15 @@ module Messenger
       private
 
       def set_payload_attributes(payload)
-        if @type == 'location'
-          @long = payload['coordinates']['long']
-          @lat  = payload['coordinates']['lat']
-        else
-          @url = payload['url']
+        if payload
+          if @type == 'location'
+            if payload['coordinates']
+              @long = payload['coordinates']['long']
+              @lat  = payload['coordinates']['lat']
+            end
+          else
+            @url = payload['url']
+          end
         end
       end
     end
