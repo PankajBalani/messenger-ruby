@@ -3,9 +3,9 @@ module Messenger
     class Message
       include Callback
 
-      attr_accessor :mid, :seq, :text, :attachments, :quick_reply, :app_id, :is_echo
+      attr_accessor :mid, :seq, :text, :attachments, :quick_reply, :app_id, :is_echo, :sticker_id
 
-      def initialize(mid:, seq:, text: nil, attachments: nil, quick_reply: nil, is_echo: nil, app_id: nil)
+      def initialize(mid:, seq:, text: nil, attachments: nil, quick_reply: nil, is_echo: nil, app_id: nil, sticker_id: nil)
         @quick_reply = quick_reply if quick_reply.present?
         @app_id      = app_id if app_id.present?
         @is_echo     = is_echo if is_echo.present?
@@ -13,6 +13,8 @@ module Messenger
         @seq         = seq
         @text        = text if text.present?
         @attachments = build_attachments(attachments) if attachments.present?
+        @sticker_id = sticker_id
+
       end
 
       def build_attachments(attachments)
