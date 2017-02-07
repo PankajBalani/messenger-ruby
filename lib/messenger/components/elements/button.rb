@@ -24,6 +24,10 @@ module Messenger
       def phone_number
         {payload: @value}
       end
+
+      def element_share
+        {}
+      end
     end
   end
 end
