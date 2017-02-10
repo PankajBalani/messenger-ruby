@@ -51,6 +51,7 @@ require "messenger/components/templates/buttons"
 require "messenger/components/templates/generic"
 require "messenger/components/templates/receipt"
 require "messenger/components/templates/quick_replies"
+require "messenger/components/templates/list"
 
 require "messenger/client"
 require "messenger/request"
