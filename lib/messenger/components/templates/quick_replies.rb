@@ -6,8 +6,9 @@ module Messenger
 
       ATTRIBUTES = %w(text quick_replies).freeze
 
-      def initialize(text:, quick_replies:)
+      def initialize(text:, quick_replies:, attachment:)
         @text          = text
+        @attachment = attachment
         @quick_replies = build_quick_replies(quick_replies)
       end
 
@@ -16,7 +17,11 @@ module Messenger
       end
 
       def build
-        {text: @text, quick_replies: @quick_replies}
+        if @text
+          {text: @text , quick_replies: @quick_replies}
+        elsif @attachment
+          {attachment: @attachment[:attachment], quick_replies: @quick_replies}
+        end
       end
     end
   end
