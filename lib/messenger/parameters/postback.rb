@@ -5,8 +5,9 @@ module Messenger
 
       attr_accessor :payload
 
-      def initialize(payload:)
+      def initialize(payload:,title: 'dummy')
         @payload = payload
+        @title = title
       end
     end
   end
